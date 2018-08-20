@@ -1,9 +1,9 @@
 ﻿
 #pragma kernel CSMain
 RWStructuredBuffer<float3> cb;
-float3 SB;
+float3 TEST;
 [numthreads(1,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-	cb[id.z] = SB;
+	cb[id.z] = TEST;
 }
