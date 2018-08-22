@@ -3,7 +3,7 @@
     * Chunk的基础绘制（使用基本的漫反射模型，无贴图）
     * Chunk的基本挖掘操作（球体挖掘函数表现很差）
 * 已知BUG:
-    * 只能更新一个Chunk的状态
+    * 只能更新一个Chunk的状态（已经发现在Update()函数中只有一个GameObject的Dispatch()可以执行，不清楚原因）
 * 正在做：
     * Chunk的LOD状态更新
     * 地形的基础生成（使用fbm）
