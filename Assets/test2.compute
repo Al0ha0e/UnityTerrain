@@ -1,9 +1,7 @@
-﻿
-#pragma kernel CSMain
-RWStructuredBuffer<float3> cb;
-float3 TEST;
-[numthreads(1,1,1)]
+﻿#pragma kernel CSMain
+RWStructuredBuffer<float> A;
+[numthreads(1,1,19)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-	cb[id.z] = TEST;
+	A[id.y * 19 * 19 + id.x * 19 + id.z] = id.y * 19 * 19 + id.x * 19 + id.z;
 }
