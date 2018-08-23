@@ -21,11 +21,7 @@ public class TerrainVoxel : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             ck.Dig(Pos,Radius);
-            print("ck");
-            foreach (Vector3 sb in ck.TEMP) print(sb);
             ck2.Dig(Pos, Radius);
-            print("ck2");
-            foreach (Vector3 sb in ck2.TEMP) print(sb);
         }
     }
   

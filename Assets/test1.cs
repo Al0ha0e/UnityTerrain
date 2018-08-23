@@ -14,13 +14,14 @@ public class test1 : MonoBehaviour
         A = new float[19];
         A_ = new ComputeBuffer(19, 4);
         Kernel = cs.FindKernel("CSMain");
-        cs.SetBuffer(Kernel,"A",A_);
+        
     }
     void Update()
     {
         if(cnt==0)
         {
             cnt++;
+            cs.SetBuffer(Kernel, "A", A_);
             cs.Dispatch(Kernel,1,1,1);
             A_.GetData(A);
             print(transform.name);

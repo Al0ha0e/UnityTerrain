@@ -57,17 +57,29 @@ public class Chunk
     {
         Master.SetVector("SpadePos", Pos);
         Master.SetFloat("Radius", Radius);
+        Master.SetBuffer(DigKernel, "DigKernelDensities", Densities);//
         Master.Dispatch(DigKernel, 1, 19, 1);
         Draw();
     }
     private void Draw()
     {
+        Master.SetBuffer(InitKernel2, "InitKernel2Densities", Densities);
+        Master.SetBuffer(InitKernel2, "InitKernel2Voxels", Voxels);
         Master.Dispatch(InitKernel2, 1, 1, 18);
+        Master.SetBuffer(InitKernel3, "InitKernel3Densities", Densities);
+        Master.SetBuffer(InitKernel3, "InitKernel3Edges", Edges);
+        Master.SetBuffer(InitKernel3, "InitKernel3Vertices", Vertices);
+        Master.SetBuffer(InitKernel3, "InitKernel3Normals", Normals);
         Master.Dispatch(InitKernel3, 1, 18, 1);
         //
         TEMP = new Vector3[300];
         Vertices.GetData(TEMP);
         //
+        Master.SetBuffer(DrawKernel, "DrawKernelVoxels", Voxels);
+        Master.SetBuffer(DrawKernel, "DrawKernelEdges", Edges);
+        Master.SetBuffer(DrawKernel, "DrawKernelVertices", Vertices);
+        Master.SetBuffer(DrawKernel, "DrawKernelNormals", Normals);
+        Master.SetBuffer(DrawKernel, "DrawKernelCounters", Counters);
         Counters.SetData(CountersIniter);
         Master.Dispatch(DrawKernel, 1, 1, 18);
         int[] ans = new int[1];

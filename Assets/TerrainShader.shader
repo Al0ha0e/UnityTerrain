@@ -68,22 +68,16 @@ Shader "Custom/TerrainShader"
 				o1.pos = UnityObjectToClipPos(Edges[pos1] * _Position.w + _Position.xyz);
 				pos1 = pos1 << 2;
 				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				if ((o1.worldNormal.x == 0.0f) && (o1.worldNormal.y == 0.0f) && (o1.worldNormal.z == 0.0f)) { o1.worldNormal.x = float3(1.0f, 1.0f, 1.0f); }
-				else { o1.worldNormal = o1.worldNormal; }
 				triStream.Append(o1);
 				pos1 = GetEdge(pos * 2 + Table[(int)edge[1]]);
 				o1.pos = UnityObjectToClipPos(Edges[pos1] * _Position.w + _Position.xyz);
 				pos1 = pos1 << 2;
 				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				if ((o1.worldNormal.x == 0.0f) && (o1.worldNormal.y == 0.0f) && (o1.worldNormal.z == 0.0f)) { o1.worldNormal.x = float3(1.0f, 1.0f, 1.0f); }
-				else { o1.worldNormal = o1.worldNormal; }
 				triStream.Append(o1);
 				pos1 = GetEdge(pos * 2 + Table[(int)edge[2]]);
 				o1.pos = UnityObjectToClipPos(Edges[pos1] * _Position.w + _Position.xyz);
 				pos1 = pos1 << 2;
 				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				if ((o1.worldNormal.x == 0.0f) && (o1.worldNormal.y == 0.0f) && (o1.worldNormal.z == 0.0f)) { o1.worldNormal.x = float3(1.0f, 1.0f, 1.0f); }
-				else { o1.worldNormal = o1.worldNormal; }
 				triStream.Append(o1);
 				triStream.RestartStrip();
 			}
