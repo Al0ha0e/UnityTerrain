@@ -15,4 +15,4 @@
     * 更多细节详见[BLOG](https://al0ha0e.github.io/)
 
 ## 地形的基础生成效果
-    ![](/ScreenSht/Perlin_1.png)
+    ![image](/ScreenSht/Perlin_1.png)
