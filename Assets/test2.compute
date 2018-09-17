@@ -8,7 +8,8 @@ float mix(float x, float y, float w) { return x * (1 - w) + y * w; }
 
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-	terrain[id.y * 4 + id.x] = Perlin(id.xy);
+	//terrain[id.y * 4 + id.x] = Perlin(id.xy);
+	terrain[id.y * 4 + id.x] = Random(id.xy);
 }
 float2 Random(float2 vec)
 {

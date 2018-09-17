@@ -16,6 +16,13 @@ public class test1 : MonoBehaviour
         cs.Dispatch(kernel, 4, 4, 1);
         ans = new float[16];
         terrain.GetData(ans);
-        foreach (float t in ans) print(t);
+        for(int i=0;i<4;i++)
+        {
+            for(int j = 0;j<4;j++)
+            {
+                print(new Vector2(i, j));
+                print(ans[i * 4 + j]);
+            }
+        }
     }
 }

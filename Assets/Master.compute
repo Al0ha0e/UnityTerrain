@@ -17,12 +17,14 @@ void InitKernel1(uint3 id : SV_DispatchThreadID)
 	//InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = Perlin(id);
 	*/
 	//float height = 100 * Random((Position.xz + id.xz * Size));
-	float2 pos = Position.xz + id.xz * Size;
-	float height = Perlin((pos/16.0f)/16)*16
-					+Perlin((pos/16.0f)/8)*8
-					+Perlin((pos/16.0f)/4)*4;
+	float2 pos = Position.xz + id.xz * Size / 16.0f;
+	float height = Perlin(pos / 16) * 26 +
+		Perlin(pos / 8) * 8 +
+		Perlin(pos / 4) * 4 +
+		Perlin(pos / 2) * 2;
 	float h = Position.y + id.y * Size / 16.0f;
 	InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = saturate(height - h);
+	
 	/*
 	if(Position.y + id.y * Size / 16.0f >=height){ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
 	else{ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 1; }

@@ -1,69 +1,36 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=27511 outsize=2517 ok=1
+  api=4 insize=27800 outsize=3429 ok=1
 Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 1 plat 4 at Master.compute(19): implicit truncation of vector type
-  api=4 insize=27574 outsize=2517 ok=1
 Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27574 outsize=3429 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=27573 outsize=2517 ok=1
+  error: 2 plat 4 at Master.compute(24): syntax error: unexpected token ';'
+  api=4 insize=27822 outsize=0 ok=0
+Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=27643 outsize=869 ok=1
+  api=4 insize=27820 outsize=949 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  error: 1 plat 4 at Master.compute(19): implicit truncation of vector type
-  api=4 insize=27586 outsize=56213 ok=1
+  api=4 insize=27821 outsize=3429 ok=1
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=27586 outsize=56213 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27571 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=890 outsize=345 ok=1
+  api=4 insize=27822 outsize=3429 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
   error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=27585 outsize=56213 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27585 outsize=2517 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27587 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27584 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27584 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  api=4 insize=27820 outsize=56213 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=27586 outsize=3429 ok=1
+  api=4 insize=27828 outsize=2517 ok=1
 Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=27799 outsize=3429 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
