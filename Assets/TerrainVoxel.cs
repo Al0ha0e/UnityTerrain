@@ -11,9 +11,10 @@ public class TerrainVoxel : MonoBehaviour
     public static ComputeShader master;
     public GameObject Player;
     private float maxsize;
-    private ChunkPool Pool;
+    public static ChunkPool Pool;
     private Chunk[,,] ChunkGrid;
     public static List<Chunk> DrawList;
+    public static List<Chunk> PrecomputeList;
     void Start()
     {
         master = Master;

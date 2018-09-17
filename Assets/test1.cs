@@ -4,36 +4,18 @@ using UnityEngine;
 
 public class test1 : MonoBehaviour
 {
-    /*
-    public GameObject player;
-    public GameObject obj;
-    public int Visibility;
-    private GameObject[,,] Grid;
-    private int sum;
+    public ComputeShader cs;
+    private ComputeBuffer terrain;
+    private int kernel;
+    private float[] ans;
     public void Start()
     {
-        sum = (Visibility << 1) | 1;
-        Grid = new GameObject[sum, sum,sum];
-        for(int i = -Visibility;i<=Visibility;i++)
-            for(int j  = -Visibility;j<=Visibility;j++)
-                for(int k = -Visibility; k<=Visibility;k++)
-                    Grid[i+Visibility, j+Visibility,k+Visibility] = GameObject.Instantiate(obj, new Vector3(i*4,k*4,j*4), Quaternion.identity);
+        kernel = cs.FindKernel("CSMain");
+        terrain = new ComputeBuffer(16, 4);
+        cs.SetBuffer(kernel, "terrain", terrain);
+        cs.Dispatch(kernel, 4, 4, 1);
+        ans = new float[16];
+        terrain.GetData(ans);
+        foreach (float t in ans) print(t);
     }
-    public void Update()
-    {
-        Vector3Int pos = new Vector3Int(Mathf.FloorToInt(player.transform.position.x / 4.0f), Mathf.FloorToInt(player.transform.position.y / 4.0f), Mathf.FloorToInt(player.transform.position.z / 4.0f));
-        
-        for (int i = -Visibility; i <= Visibility; i++)
-            for (int j = -Visibility; j <= Visibility; j++)
-                for(int k = -Visibility;k<=Visibility;k++)
-                {
-                    Vector3Int ss = new Vector3Int(((pos.x + i) % sum + sum) % sum, ((pos.y + k) % sum + sum) % sum,((pos.z + j) % sum + sum) % sum);
-                    if (Grid[ss.x, ss.y, ss.z].transform.position != new Vector3((pos.x + i) * 4, (pos.y + k) * 4, (pos.z + j) * 4)) 
-                    {
-                        GameObject.Destroy(Grid[ss.x, ss.y,ss.z], 0.0f);
-                        Grid[ss.x, ss.y,ss.z] = GameObject.Instantiate(obj, new Vector3((pos.x + i) * 4, (pos.y + k) * 4, (pos.z + j) * 4), Quaternion.identity);
-                    }
-                }  
-    }
-    */
 }

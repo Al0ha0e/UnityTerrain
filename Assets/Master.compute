@@ -2,9 +2,9 @@
 RWStructuredBuffer<float2> InitKernel1Densities;
 float3 Position;
 float Size;
-float Mix(float x, float y, float w) { return x * (1 - w) + y * w; }
-float3 Random(float3 seed);
-float Perlin(float3 pos);
+float2 Random(float2 vec);
+float Perlin(float2 pos);
+float mix(float x, float y, float w) { return x * (1 - w) + y * w; }
 [numthreads(19, 19, 1)]
 
 void InitKernel1(uint3 id : SV_DispatchThreadID)
@@ -16,10 +16,37 @@ void InitKernel1(uint3 id : SV_DispatchThreadID)
 	else { InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 1; }
 	//InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = Perlin(id);
 	*/
-	if(Position.y + id.y * Size/16.0f>=0){ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
+	//float height = 100 * Random((Position.xz + id.xz * Size));
+	float2 pos = Position.xz + id.xz * Size;
+	float height = Perlin((pos/16.0f)/16)*16
+					+Perlin((pos/16.0f)/8)*8
+					+Perlin((pos/16.0f)/4)*4;
+	float h = Position.y + id.y * Size / 16.0f;
+	InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = saturate(height - h);
+	/*
+	if(Position.y + id.y * Size / 16.0f >=height){ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
 	else{ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 1; }
+	*/
 }
 
+float2 Random(float2 vec)
+{
+	vec = float2(dot(vec, float2(127.1, 311.7)), dot(vec, float2(269.5, 183.3)));
+	return -1.0 + 2.0 * frac(sin(vec)*43758.5453123);
+}
+float Perlin(float2 pos)
+{
+	float2 pi = floor(pos);
+	float2 pf = frac(pos);
+	float2 w = pf * pf * (3.0 - 2.0 * pf);
+
+	return mix(mix(dot(Random(pi + float2(0.0, 0.0)), pf - float2(0.0, 0.0)),
+		dot(Random(pi + float2(1.0, 0.0)), pf - float2(1.0, 0.0)), w.x),
+		mix(dot(Random(pi + float2(0.0, 1.0)), pf - float2(0.0, 1.0)),
+			dot(Random(pi + float2(1.0, 1.0)), pf - float2(1.0, 1.0)), w.x),
+		w.y);
+
+}
 #pragma kernel InitKernel2
 StructuredBuffer<float2> InitKernel2Densities;
 RWStructuredBuffer<uint> InitKernel2Voxels;

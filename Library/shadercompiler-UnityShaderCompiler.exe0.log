@@ -2,20 +2,257 @@ Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=26883 outsize=26890 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=26890 outsize=805 ok=1
 Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27497 outsize=27504 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Master.compute(25): cannot implicitly convert from 'float2' to 'float3'
+  error: 1 plat 4 at Master.compute(25): 'dot': implicit truncation of vector type
+  api=4 insize=27504 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=826 outsize=825 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at test2.compute(8): undeclared identifier 'fract'
+  api=4 insize=825 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=830 outsize=829 ok=1
+Cmd: preprocessCompute
+  insize=828 outsize=827 ok=1
+Cmd: preprocessCompute
+  insize=825 outsize=824 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at test2.compute(8): cannot implicitly convert from 'const float2' to 'float3'
+  api=4 insize=824 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=825 outsize=824 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at test2.compute(23): undeclared identifier 'di'
+  api=4 insize=824 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=825 outsize=824 ok=1
+Cmd: preprocessCompute
+  insize=831 outsize=830 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at test2.compute(10): undeclared identifier 'Perlin'
+  api=4 insize=830 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=886 outsize=885 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at (0): Program 'CSMain', error X3084: 'numthreads(X,Y,Z)' attribute expected, where 'X,Y,Z' are the dimensions of the thread group
+  api=4 insize=885 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=884 outsize=883 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=883 outsize=345 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: preprocessCompute
-  insize=26848 outsize=26855 ok=1
+  insize=884 outsize=883 ok=1
 Cmd: compileComputeKernel
-  api=4 insize=26855 outsize=949 ok=1
+  error: 1 plat 4 at test2.compute(11): implicit truncation of vector type
+  api=4 insize=883 outsize=509 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=884 outsize=883 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=906 outsize=905 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at test2.compute(23): implicit truncation of vector type
+  api=4 insize=905 outsize=345 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=908 outsize=907 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=907 outsize=345 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=909 outsize=908 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=908 outsize=361 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=909 outsize=908 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=908 outsize=345 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=909 outsize=908 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=910 outsize=909 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=909 outsize=345 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=911 outsize=910 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=910 outsize=361 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=906 outsize=905 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=905 outsize=2045 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=910 outsize=909 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=909 outsize=2073 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27489 outsize=27496 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Master.compute(19): 'Perlin': cannot implicitly convert from 'const float2' to 'float3'
+  api=4 insize=27496 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=27504 outsize=27511 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Master.compute(19): 'Perlin': cannot implicitly convert from 'const float2' to 'float3'
+  api=4 insize=27511 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=27504 outsize=27511 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Master.compute(35): undeclared identifier 'mix'
+  api=4 insize=27511 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=27504 outsize=27511 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27511 outsize=2561 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27567 outsize=27574 ok=1
+Cmd: compileComputeKernel
+  error: 1 plat 4 at Master.compute(19): implicit truncation of vector type
+  api=4 insize=27574 outsize=1025 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27567 outsize=27574 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27574 outsize=2517 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27566 outsize=27573 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27573 outsize=2561 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27636 outsize=27643 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27643 outsize=2517 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27586 outsize=925 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27564 outsize=27571 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27571 outsize=2561 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=891 outsize=890 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=910 outsize=909 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27578 outsize=27585 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27585 outsize=2561 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27584 outsize=27591 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27591 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27578 outsize=27585 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27585 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27580 outsize=27587 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27587 outsize=2489 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27577 outsize=27584 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27584 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27577 outsize=27584 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27584 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27578 outsize=27585 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27585 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27586 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27586 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27580 outsize=27587 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27587 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27586 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27579 outsize=27586 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27586 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27565 outsize=27572 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27572 outsize=2529 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27653 outsize=27660 ok=1
+Cmd: compileComputeKernel
+  error: 2 plat 4 at Master.compute(20): cannot implicitly convert from 'const float2' to 'float3'
+  api=4 insize=27660 outsize=0 ok=0
+Cmd: preprocessCompute
+  insize=27653 outsize=27660 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27660 outsize=5597 ok=1
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27792 outsize=27799 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27799 outsize=5449 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: preprocessCompute
+  insize=27784 outsize=27791 ok=1
+Cmd: compileComputeKernel
+  api=4 insize=27791 outsize=5449 ok=1
 Cmd: initializeCompiler

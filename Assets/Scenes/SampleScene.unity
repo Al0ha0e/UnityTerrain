@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd217e85300c40498dc4d44ce908eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Visibility: 2
+  Visibility: 1
   MaxInstanceCount: 30
   material: {fileID: 2100000, guid: 61c6af354c3579948b2bbd2da0d23c22, type: 2}
   Master: {fileID: 7200000, guid: d355721686d21594bbfa5a06a686eb5e, type: 3}
@@ -236,6 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bfcc8bcf0ec9f45ab6c30be5a3c5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cs: {fileID: 7200000, guid: 81a93bdefee53844f8317aa5d45056d5, type: 3}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
