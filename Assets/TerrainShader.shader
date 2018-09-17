@@ -63,6 +63,7 @@ Shader "Custom/TerrainShader"
 				float3 edge  = gin[0].vertex - pos * 100.0f;
 				uint pos1;
 				//float3 normal = mul(cross(pos2-pos1,pos3-pos2),(float3x3)unity_WorldToObject);
+				_Position.w /= 16.0f;
 				g2f o1;
 				pos1 = GetEdge(pos * 2 + Table[(int)edge[0]]);
 				o1.pos = UnityObjectToClipPos(Edges[pos1] * _Position.w + _Position.xyz);

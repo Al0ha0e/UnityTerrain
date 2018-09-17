@@ -4,47 +4,68 @@ using UnityEngine;
 
 public class TerrainVoxel : MonoBehaviour
 {
-    public ComputeShader Master;
+    public int Visibility; //Real Visibility = pow(16,Visibility)
+    public int MaxInstanceCount;
     public Material material;
-    public Vector3 Pos;// TEMP
-    public float Radius;//TEMP
-    public float Size;
-    private Chunk ck;
-    private Chunk ck2;
+    public ComputeShader Master;
+    public static ComputeShader master;
+    public GameObject Player;
+    private float maxsize;
+    private ChunkPool Pool;
+    private Chunk[,,] ChunkGrid;
+    public static List<Chunk> DrawList;
     void Start()
     {
-        ck = new Chunk(Size,Master);
-        ck2 = new Chunk(Size, Master);
+        master = Master;
+        Pool = new ChunkPool(MaxInstanceCount);
+        ChunkGrid = new Chunk[3, 3, 3];
+        maxsize = Mathf.Pow(16, Visibility);
+        for (int i = -1; i <= 1; i++)
+            for (int j = -1; j <= 1; j++)
+                for (int k = -1; k <= 1; k++)
+                    ChunkGrid[i + 1, j + 1, k + 1] = Pool.GetInstance(new Vector3(i * maxsize, j * maxsize, k * maxsize), maxsize);
+        DrawList = new List<Chunk>();
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            ck.Dig(Pos,Radius);
-            ck2.Dig(Pos, Radius);
-        }
+        
+        Vector3Int pos = new Vector3Int(Mathf.FloorToInt(Player.transform.position.x / maxsize), Mathf.FloorToInt(Player.transform.position.y / maxsize), Mathf.FloorToInt(Player.transform.position.z / maxsize));
+        for (int i = -1; i <= 1; i++)
+            for (int j = -1; j <= 1; j++)
+                for (int k = -1; k <= 1; k++)
+                {
+                    Vector3Int ss = new Vector3Int(((pos.x + i) % 3 + 3) % 3, ((pos.y + j) % 3 + 3) % 3, ((pos.z + k) % 3 + 3) % 3);
+                    if (ChunkGrid[ss.x, ss.y, ss.z].Position != new Vector3((pos.x + i) * maxsize, (pos.y + j) * maxsize, (pos.z + k) * maxsize))
+                    {
+                        Pool.Release(ChunkGrid[ss.x, ss.y, ss.z].ID);
+                        ChunkGrid[ss.x, ss.y, ss.z] = Pool.GetInstance(new Vector3((pos.x + i) * maxsize, (pos.y + j) * maxsize, (pos.z + k) * maxsize), maxsize);
+                    }
+                }
+        foreach(Chunk t in ChunkGrid) { t.Dfs(); }
     }
-  
+    /*
+    private void Dig()
+    {
+        Spade sp = new Spade();
+    }
+    */
     void OnRenderObject()
     {
-        material.SetBuffer("Edges", ck.Edges);
-        material.SetBuffer("Vertices", ck.Vertices);
-        material.SetBuffer("Normals", ck.Normals);
-        material.SetVector("_Position", new Vector4(transform.position.x, transform.position.y, transform.position.z, ck.Size));
-        material.SetPass(0);
-        Graphics.DrawProcedural(MeshTopology.Points,ck.vertcount);
-        material.SetBuffer("Edges", ck2.Edges);
-        material.SetBuffer("Vertices", ck2.Vertices);
-        material.SetBuffer("Normals", ck2.Normals);
-        material.SetVector("_Position", new Vector4(transform.position.x+20.0f, transform.position.y, transform.position.z, ck2.Size));
-        material.SetPass(0);
-        Graphics.DrawProcedural(MeshTopology.Points, ck2.vertcount);
+        foreach (Chunk t in DrawList)
+        {
+            material.SetBuffer("Edges", t.Edges);
+            material.SetBuffer("Vertices", t.Vertices);
+            material.SetBuffer("Normals", t.Normals);
+            material.SetVector("_Position", new Vector4(t.Position.x, t.Position.y, t.Position.z, t.Size));
+            material.SetPass(0);
+            Graphics.DrawProcedural(MeshTopology.Points, t.vertcount);
+        }
+        DrawList.Clear();
     }
     
 
     void OnDestroy()
     {
-        ck.Release();
-        ck2.Release();
+        Pool.Dispose();
     }
 }

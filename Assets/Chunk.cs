@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Chunk
 {
-    public Vector3[] TEMP; //DEBUG
+    public int ID;
     public float Size;
+    public Vector3 Position;
     public ComputeShader Master;
-    private ComputeBuffer Densities;
+    public ComputeBuffer Densities;
     private ComputeBuffer Voxels;
     public ComputeBuffer Edges;
     public ComputeBuffer Vertices;
     public ComputeBuffer Normals;
     private ComputeBuffer Counters;
+    private bool ChangedFlag;
     private int[] CountersIniter = { 0 };
     private Vector3[] vertices;
     private int InitKernel1;//calc and fill the densities buffer
@@ -21,10 +23,12 @@ public class Chunk
     private int DrawKernel;//calc and fill the vertices buffer,calc and fill the normals buffer
     private int DigKernel;//finally, this kernel will be set in another class especially designed for spades
     public int vertcount;
-    public Chunk(float size,ComputeShader master)
+    public Chunk(int id)
+    //public Chunk(float size,ComputeShader master)
     {
-        this.Size = size;
-        this.Master = master;
+        //this.Size = size;
+        ID = id;
+        this.Master = TerrainVoxel.master;
         InitKernel1 = Master.FindKernel("InitKernel1");
         InitKernel2 = Master.FindKernel("InitKernel2");
         InitKernel3 = Master.FindKernel("InitKernel3");
@@ -49,42 +53,77 @@ public class Chunk
         Master.SetBuffer(DrawKernel, "DrawKernelNormals", Normals);
         Counters = new ComputeBuffer(1, 4);
         Master.SetBuffer(DrawKernel, "DrawKernelCounters", Counters);
-        Master.Dispatch(InitKernel1, 1, 1, 19);
-        Draw();
-        //print(ans[0]);
+        //Master.Dispatch(InitKernel1, 1, 1, 19);
+        //ChangedFlag = true;
+        //Draw();
     }
-    public void Dig(Vector3 Pos,float Radius)
+
+    public Chunk Activate(Vector3 pos, float size)
+    {
+        Position = pos;
+        Master.SetVector("Position", Position);
+        Size = size;
+        Master.SetFloat("Size", Size);
+        Master.SetBuffer(InitKernel1, "InitKernel1Densities", Densities);
+        Master.Dispatch(InitKernel1, 1, 1, 19);
+        ChangedFlag = true;
+        /*
+         if(IsNew(pos))
+         {Master.Dispatch(InitKernel1, 1, 1, 19);}
+         else
+         {ReadFromDisk();}
+         */
+        return this;
+    }
+
+    public void Refresh()
+    {
+
+    }
+
+    public void Dfs()
+    {
+        Draw();
+        TerrainVoxel.DrawList.Add(this);
+    }
+
+    public void Dig(Vector3 Pos,float Radius/*Spade sp*/)
     {
         Master.SetVector("SpadePos", Pos);
         Master.SetFloat("Radius", Radius);
         Master.SetBuffer(DigKernel, "DigKernelDensities", Densities);//
         Master.Dispatch(DigKernel, 1, 19, 1);
-        Draw();
+        ChangedFlag = true;
+        //Draw();
+        /*
+        sp.Add(this);
+        ChangedFlag = true;
+        */
     }
-    private void Draw()
+    public void Draw()
     {
-        Master.SetBuffer(InitKernel2, "InitKernel2Densities", Densities);
-        Master.SetBuffer(InitKernel2, "InitKernel2Voxels", Voxels);
-        Master.Dispatch(InitKernel2, 1, 1, 18);
-        Master.SetBuffer(InitKernel3, "InitKernel3Densities", Densities);
-        Master.SetBuffer(InitKernel3, "InitKernel3Edges", Edges);
-        Master.SetBuffer(InitKernel3, "InitKernel3Vertices", Vertices);
-        Master.SetBuffer(InitKernel3, "InitKernel3Normals", Normals);
-        Master.Dispatch(InitKernel3, 1, 18, 1);
-        //
-        TEMP = new Vector3[300];
-        Vertices.GetData(TEMP);
-        //
-        Master.SetBuffer(DrawKernel, "DrawKernelVoxels", Voxels);
-        Master.SetBuffer(DrawKernel, "DrawKernelEdges", Edges);
-        Master.SetBuffer(DrawKernel, "DrawKernelVertices", Vertices);
-        Master.SetBuffer(DrawKernel, "DrawKernelNormals", Normals);
-        Master.SetBuffer(DrawKernel, "DrawKernelCounters", Counters);
-        Counters.SetData(CountersIniter);
-        Master.Dispatch(DrawKernel, 1, 1, 18);
-        int[] ans = new int[1];
-        Counters.GetData(ans);
-        vertcount = ans[0]; 
+        if(ChangedFlag)
+        {
+            Master.SetBuffer(InitKernel2, "InitKernel2Densities", Densities);
+            Master.SetBuffer(InitKernel2, "InitKernel2Voxels", Voxels);
+            Master.Dispatch(InitKernel2, 1, 1, 18);
+            Master.SetBuffer(InitKernel3, "InitKernel3Densities", Densities);
+            Master.SetBuffer(InitKernel3, "InitKernel3Edges", Edges);
+            Master.SetBuffer(InitKernel3, "InitKernel3Vertices", Vertices);
+            Master.SetBuffer(InitKernel3, "InitKernel3Normals", Normals);
+            Master.Dispatch(InitKernel3, 1, 18, 1);
+            Master.SetBuffer(DrawKernel, "DrawKernelVoxels", Voxels);
+            Master.SetBuffer(DrawKernel, "DrawKernelEdges", Edges);
+            Master.SetBuffer(DrawKernel, "DrawKernelVertices", Vertices);
+            Master.SetBuffer(DrawKernel, "DrawKernelNormals", Normals);
+            Master.SetBuffer(DrawKernel, "DrawKernelCounters", Counters);
+            Counters.SetData(CountersIniter);
+            Master.Dispatch(DrawKernel, 1, 1, 18);
+            int[] ans = new int[1];
+            Counters.GetData(ans);
+            vertcount = ans[0];
+            ChangedFlag = false;
+        }      
     }
     public void Release()
     {

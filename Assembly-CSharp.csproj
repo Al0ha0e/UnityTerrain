@@ -62,10 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Chunk.cs" />
+    <Compile Include="Assets\ChunkPool.cs" />
+    <Compile Include="Assets\ExpSpade.cs" />
+    <Compile Include="Assets\Spade.cs" />
     <Compile Include="Assets\TerrainVoxel.cs" />
     <Compile Include="Assets\test1.cs" />
     <None Include="Assets\TerrainShader.shader" />
     <None Include="Assets\Master.compute" />
+    <None Include="Assets\SpadeShader.compute" />
     <None Include="Assets\test2.compute" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/UNITY_GAME/New Unity Project/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

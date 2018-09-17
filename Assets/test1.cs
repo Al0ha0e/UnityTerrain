@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class test1 : MonoBehaviour
 {
-    private float[] A;
-    private ComputeBuffer A_;
-    public ComputeShader cs;
-    private int cnt = 0;
-    private int Kernel;
-    private void Start()
+    /*
+    public GameObject player;
+    public GameObject obj;
+    public int Visibility;
+    private GameObject[,,] Grid;
+    private int sum;
+    public void Start()
     {
-        A = new float[19];
-        A_ = new ComputeBuffer(19, 4);
-        Kernel = cs.FindKernel("CSMain");
+        sum = (Visibility << 1) | 1;
+        Grid = new GameObject[sum, sum,sum];
+        for(int i = -Visibility;i<=Visibility;i++)
+            for(int j  = -Visibility;j<=Visibility;j++)
+                for(int k = -Visibility; k<=Visibility;k++)
+                    Grid[i+Visibility, j+Visibility,k+Visibility] = GameObject.Instantiate(obj, new Vector3(i*4,k*4,j*4), Quaternion.identity);
+    }
+    public void Update()
+    {
+        Vector3Int pos = new Vector3Int(Mathf.FloorToInt(player.transform.position.x / 4.0f), Mathf.FloorToInt(player.transform.position.y / 4.0f), Mathf.FloorToInt(player.transform.position.z / 4.0f));
         
+        for (int i = -Visibility; i <= Visibility; i++)
+            for (int j = -Visibility; j <= Visibility; j++)
+                for(int k = -Visibility;k<=Visibility;k++)
+                {
+                    Vector3Int ss = new Vector3Int(((pos.x + i) % sum + sum) % sum, ((pos.y + k) % sum + sum) % sum,((pos.z + j) % sum + sum) % sum);
+                    if (Grid[ss.x, ss.y, ss.z].transform.position != new Vector3((pos.x + i) * 4, (pos.y + k) * 4, (pos.z + j) * 4)) 
+                    {
+                        GameObject.Destroy(Grid[ss.x, ss.y,ss.z], 0.0f);
+                        Grid[ss.x, ss.y,ss.z] = GameObject.Instantiate(obj, new Vector3((pos.x + i) * 4, (pos.y + k) * 4, (pos.z + j) * 4), Quaternion.identity);
+                    }
+                }  
     }
-    void Update()
-    {
-        if(cnt==0)
-        {
-            cnt++;
-            cs.SetBuffer(Kernel, "A", A_);
-            cs.Dispatch(Kernel,1,1,1);
-            A_.GetData(A);
-            print(transform.name);
-            for (int i = 0; i <= 18; i++) print(A[i]);
-        }
-    }
+    */
 }

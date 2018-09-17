@@ -1,5 +1,7 @@
 ﻿#pragma kernel InitKernel1
 RWStructuredBuffer<float2> InitKernel1Densities;
+float3 Position;
+float Size;
 float Mix(float x, float y, float w) { return x * (1 - w) + y * w; }
 float3 Random(float3 seed);
 float Perlin(float3 pos);
@@ -7,11 +9,15 @@ float Perlin(float3 pos);
 
 void InitKernel1(uint3 id : SV_DispatchThreadID)
 {
+	/*
 	if (id.x == 0 || id.x == 18 || id.y == 0 || id.y == 18 || id.z == 0 || id.z == 18) 
 	{ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
 	else if((id.x==3)&&(id.y==1)&&(id.z==3)){ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
 	else { InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 1; }
 	//InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = Perlin(id);
+	*/
+	if(Position.y + id.y * Size/16.0f>=0){ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 0; }
+	else{ InitKernel1Densities[id.y * 361 + id.x * 19 + id.z].x = 1; }
 }
 
 #pragma kernel InitKernel2

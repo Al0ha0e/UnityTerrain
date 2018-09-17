@@ -1,0 +1,20 @@
+﻿#pragma kernel DigKernel
+
+RWStructuredBuffer<float2> Densities;
+float3 SpadePos;
+float Radius;
+[numthreads(19, 1, 19)]
+
+void DigKernel(uint3 id : SV_DispatchThreadID)
+{
+	uint pos = id.y * 361 + id.x * 19 + id.z;
+	float3 tmp = id - SpadePos;
+	//DigKernelDensities[pos].x =
+		//DigKernelDensities[pos].x*saturate(log2(sqrt(tmp.x*tmp.x + tmp.y*tmp.y + tmp.z*tmp.z) + 0.5)-Radius);
+	//DigKernelDensities[pos].x =
+	//DigKernelDensities[pos].x*saturate((pow((2.0f/Radius)*(sqrt(tmp.x*tmp.x + tmp.y*tmp.y + tmp.z*tmp.z) - 2 * Radius),1.0f/3.0f)+1.0f)*0.5f);
+	//if (tmp.x*tmp.x + tmp.y*tmp.y + tmp.z*tmp.z > Radius*Radius) { DigKernelDensities[pos].x = DigKernelDensities[pos].x; }
+	//else { DigKernelDensities[pos].x = 0.0f; }
+	Densities[pos].x =
+		Densities[pos].x*saturate((1.0f - exp(-pow(pow(2, 9.0f / Radius), (sqrt(tmp.x*tmp.x + tmp.y*tmp.y + tmp.z*tmp.z) - 1.75f*Radius)))) - 0.000001f);
+}
