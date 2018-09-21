@@ -14,7 +14,8 @@ public class TerrainVoxel : MonoBehaviour
     public static ChunkPool Pool;
     private Chunk[,,] ChunkGrid;
     public static List<Chunk> DrawList;
-    public static List<Chunk> PrecomputeList;
+    public static List<Vector4> PrecomputeList;
+    public static float MinSize;
     void Start()
     {
         master = Master;
@@ -42,7 +43,7 @@ public class TerrainVoxel : MonoBehaviour
                         ChunkGrid[ss.x, ss.y, ss.z] = Pool.GetInstance(new Vector3((pos.x + i) * maxsize, (pos.y + j) * maxsize, (pos.z + k) * maxsize), maxsize);
                     }
                 }
-        foreach(Chunk t in ChunkGrid) { t.Dfs(); }
+        foreach(Chunk t in ChunkGrid) { t.Dfs(Player.transform.position); }
     }
     /*
     private void Dig()
@@ -68,5 +69,10 @@ public class TerrainVoxel : MonoBehaviour
     void OnDestroy()
     {
         Pool.Dispose();
+    }
+    
+    static public bool IsNew(Vector3 position)
+    {
+        return true;
     }
 }

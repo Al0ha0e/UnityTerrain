@@ -67,6 +67,7 @@
     <Compile Include="Assets\Spade.cs" />
     <Compile Include="Assets\TerrainVoxel.cs" />
     <Compile Include="Assets\test1.cs" />
+    <Compile Include="Assets\testFPS.cs" />
     <None Include="Assets\TerrainShader.shader" />
     <None Include="Assets\Master.compute" />
     <None Include="Assets\SpadeShader.compute" />
