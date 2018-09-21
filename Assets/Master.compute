@@ -152,7 +152,7 @@ void MaskClearKernel(uint3 id : SV_DispatchThreadID)
 #pragma kernel MaskSetKernel
 
 RWStructuredBuffer<uint> MaskSetKernelVoxels;
-//float3 ClearStartPos;
+float3 SetClearStartPos;
 
 [numthreads(1,1,1)]
 

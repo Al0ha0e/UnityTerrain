@@ -14,7 +14,13 @@ public class TerrainVoxel : MonoBehaviour
     public static ChunkPool Pool;
     private Chunk[,,] ChunkGrid;
     public static List<Chunk> DrawList;
-    public static List<Vector4> PrecomputeList;
+    public struct PrecomputeAttrib
+    {
+        public Vector4 Pos;
+        public Chunk Fa;
+        public PrecomputeAttrib(Vector4 pos,Chunk fa) { Pos = pos; Fa = fa; }
+    }
+    public static List<PrecomputeAttrib> PrecomputeList;
     public static float MinSize;
     void Start()
     {
@@ -22,11 +28,13 @@ public class TerrainVoxel : MonoBehaviour
         Pool = new ChunkPool(MaxInstanceCount);
         ChunkGrid = new Chunk[3, 3, 3];
         maxsize = Mathf.Pow(16, Visibility);
+        MinSize = 1.0f;
         for (int i = -1; i <= 1; i++)
             for (int j = -1; j <= 1; j++)
                 for (int k = -1; k <= 1; k++)
                     ChunkGrid[i + 1, j + 1, k + 1] = Pool.GetInstance(new Vector3(i * maxsize, j * maxsize, k * maxsize), maxsize);
         DrawList = new List<Chunk>();
+        PrecomputeList = new List<PrecomputeAttrib>();
     }
     void Update()
     {
