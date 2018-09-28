@@ -1,9 +1,9 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  error: 1 plat 4 at Master.compute(144): 'Kernel' : unknown pragma ignored
-  error: 2 plat 4 at Master.compute(152): undeclared identifier 'ClearStartPos'
-  api=4 insize=28475 outsize=0 ok=0
+  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
+  error: 1 plat 4 at Master.compute(30): implicit truncation of vector type
+  api=4 insize=28438 outsize=56249 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
@@ -19,14 +19,58 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 1 plat 4 at Master.compute(144): 'Kernel' : unknown pragma ignored
-  api=4 insize=28281 outsize=2489 ok=1
-Cmd: compileComputeKernel
-  api=4 insize=28283 outsize=3429 ok=1
 Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28454 outsize=3429 ok=1
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
+Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
@@ -39,30 +83,10 @@ Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
   error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28344 outsize=56545 ok=1
+  api=4 insize=28547 outsize=56249 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28435 outsize=641 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28205 outsize=56249 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28133 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 2 plat 4 at Master.compute(155): redefinition of 'ClearStartPos'
-  api=4 insize=28430 outsize=0 ok=0
-Cmd: compileComputeKernel
-  api=4 insize=28407 outsize=3429 ok=1
-Cmd: initializeCompiler
+Unhandled exception: Protocol error - unexpected end of data (did the Editor crash?)
+
+Quitting shader compiler process

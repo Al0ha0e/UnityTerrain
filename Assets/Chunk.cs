@@ -52,7 +52,6 @@ public class Chunk
         //ChangedFlag = true;
         //Draw();
     }
-
     public Chunk Activate(Vector3 pos, float size)
     {
         Position = pos;
@@ -62,7 +61,7 @@ public class Chunk
         Master.SetBuffer(InitKernel1, "InitKernel1Densities", Densities);
         Master.Dispatch(InitKernel1, 1, 1, 19);
         ChangedFlag = true;
-         if(TerrainVoxel.IsNew(pos*Size))
+        if (TerrainVoxel.IsNew(Position * Size))
          {
             Master.Dispatch(InitKernel1, 1, 1, 19);
          }
@@ -82,48 +81,50 @@ public class Chunk
     {
         Draw();
         TerrainVoxel.DrawList.Add(this);
-        if (this.Size == TerrainVoxel.MinSize) return;
+        if (this.Size <= TerrainVoxel.MinSize) return;
+        float unit = Size / 16.0f;
         if(PreSize.x!=0)
         {
             Master.SetBuffer(MaskClearKernel, "MaskClearKernelVoxels", Voxels);
             Master.SetVector("ClearStartPos", ClearStartPos);
             Master.Dispatch(MaskClearKernel, PreSize.x, PreSize.y, PreSize.z);
         }
-        Vector3 PL = PlayerPos * 16 / Size, CK = Position * 16 / Size;
+        Vector3 PL = PlayerPos / unit, CK = Position*16.0f;
+        PL.x = Mathf.FloorToInt(PL.x); PL.y = Mathf.FloorToInt(PL.y); PL.z = Mathf.FloorToInt(PL.z);
+        CK.x = Mathf.FloorToInt(CK.x); CK.y = Mathf.FloorToInt(CK.y); CK.z = Mathf.FloorToInt(CK.z);
         Vector3 T = PL - CK;
-        Vector3Int LD = new Vector3Int(100, 100, 100), RT = new Vector3Int(-1, -1, -1), T1 = new Vector3Int();
+        Vector3Int LD = new Vector3Int(100, 100, 100), RT = new Vector3Int(-100, -100, -100), T1 = new Vector3Int();
         int i, j, k, x, y, z;
-        for(i=-2;i<=2;i++)
+        for (i=-2;i<=2;i++)
             for(j=-2;j<=2;j++)
                 for(k=-2;k<=2;k++)
                 {
-                    x = ((int)(PL.x + i) % 5 + 5) % 5;
-                    y = ((int)(PL.y + j) % 5 + 5) % 5;
-                    z = ((int)(PL.z + k) % 5 + 5) % 5;
-                    if (T.x + i < 0 || T.x + i > 17 || T.y + j < 0 || T.y + j > 17 || T.z + k < 0 || T.z + k > 17)
+                    T1.x = (int)T.x + i; T1.y = (int)T.y + j; T1.z = (int)T.z + k;
+                    x = ((int)(T1.x) % 5 + 5) % 5;
+                    y = ((int)(T1.y) % 5 + 5) % 5;
+                    z = ((int)(T1.z) % 5 + 5) % 5;
+                    if ((T1.x < 0) || (T1.x > 15) || (T1.y < 0) || (T1.y > 15) || (T1.z < 0) || (T1.z > 15))  
                     {
-                        if (ChunkGrid[x, y, z] != null) TerrainVoxel.Pool.Release(ChunkGrid[x, y, z].ID);
+                        if (ChunkGrid[x, y, z] != null) TerrainVoxel.Pool.Release(ChunkGrid[x, y, z]);
                         ChunkGrid[x, y, z] = null;
                         continue;
                     }
-                    if (i > -2 && i < 2 && j > -2 && j < 2 && k > -2 && k < 2)
+                    if (((i > -2) && (i < 2)) && ((j > -2) && (j < 2)) && ((k > -2) && (k < 2)))
                     {
                         if (ChunkGrid[x, y, z] == null)
                         {
-                            TerrainVoxel.print("INIT");
-                            ChunkGrid[x, y, z] = TerrainVoxel.Pool.GetInstance(new Vector3(PL.x + i, PL.y + j, PL.z + k), Size / 16.0f);
+                            ChunkGrid[x, y, z] = TerrainVoxel.Pool.GetInstance(new Vector3(PL.x + i, PL.y + j, PL.z + k), unit, "DFS_UPD");
                         }
-                        T1.x = (int)T.x + i; T1.y = (int)T.y + j; T1.z = (int)T.z + k;
                         if (T1.x <= LD.x && T1.y <= LD.y && T1.z <= LD.z) { LD = T1; }
-                        else if (T1.x >= LD.x && T1.y >= LD.y && T1.z >= LD.z) { RT = T1; }
+                        if (T1.x >= LD.x && T1.y >= LD.y && T1.z >= LD.z) { RT = T1; }
                         continue;
                     }
-                    if (ChunkGrid[x, y, z] == null) { TerrainVoxel.PrecomputeList.Add(new TerrainVoxel.PrecomputeAttrib(new Vector4(PL.x + i, PL.y + j, PL.z + k, Size / 16.0f),this)); }
-                    else if (ChunkGrid[x, y, z].Position != new Vector3(PL.x + i, PL.y + y, PL.z + z))
+                    if (ChunkGrid[x, y, z] == null) { TerrainVoxel.PrecomputeList.Add(new TerrainVoxel.PrecomputeAttrib(new Vector4(PL.x + i, PL.y + j, PL.z + k, unit), this)); }
+                    else if (ChunkGrid[x, y, z].Position != new Vector3(PL.x + i, PL.y + j, PL.z + k))
                     {
-                        TerrainVoxel.Pool.Release(ChunkGrid[x, y, z].ID);
+                        TerrainVoxel.Pool.Release(ChunkGrid[x, y, z]);
                         ChunkGrid[x, y, z] = null;
-                        TerrainVoxel.PrecomputeList.Add(new TerrainVoxel.PrecomputeAttrib(new Vector4(PL.x + i, PL.y + j, PL.z + k, Size / 16.0f), this));
+                        TerrainVoxel.PrecomputeList.Add(new TerrainVoxel.PrecomputeAttrib(new Vector4(PL.x + i, PL.y + j, PL.z + k, unit), this));
                     }
                 }
         if(LD.x!=100)
@@ -136,7 +137,10 @@ public class Chunk
             for (i = 0; i < PreSize.x; i++)
                 for (j = 0; j < PreSize.y; j++)
                     for (k = 0; k < PreSize.z; k++)
+                    {
                         ChunkGrid[((int)ClearStartPos.x + i) % 5, ((int)ClearStartPos.y + j) % 5, ((int)ClearStartPos.z + k) % 5].Dfs(PlayerPos);
+                    }
+                        
         }
         else { PreSize.x = 0; }
     }

@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class ChunkPool : IDisposable// this should have been Singletonlized 
 {
+    public static int InstanceCnt;//DEBUG
     public int[] IDs;
     public Chunk[] Pool;
     public int InstanceCount;
     ComputeShader Master;
     public ChunkPool(int instancecount)
     {
+        InstanceCnt = 0;//DEBUG
         InstanceCount = instancecount;
         IDs = new int[instancecount + 1];
         Pool = new Chunk[instancecount];
@@ -21,9 +23,23 @@ public class ChunkPool : IDisposable// this should have been Singletonlized
         }
         IDs[0] = InstanceCount;
     }
-    public Chunk GetInstance(Vector3 pos,float size)
+    public Chunk GetInstance(Vector3 pos,float size,string customer)
     {
-        if(IDs[0]==0)//MLE
+        ////////////////////////////////////////////////////////////////////////
+        InstanceCnt++;//DEBIG
+        /*
+        if(customer== "DFS_UPD")
+        {
+            TerrainVoxel.print(InstanceCnt);
+            TerrainVoxel.print(customer);
+            TerrainVoxel.print("------------------------------");
+            TerrainVoxel.print(pos);
+            TerrainVoxel.print(size);
+            TerrainVoxel.print("------------------------------");
+        }     
+        */
+        ///////////////////////////////////////////////////////////////////////////
+        if (IDs[0]==0)//MLE
         {
             Chunk ret = new Chunk(-1);
             ret.Activate(pos, size);
@@ -35,11 +51,15 @@ public class ChunkPool : IDisposable// this should have been Singletonlized
             return ret;
         }
     }
-    public void Release(int id)
+    public void Release(Chunk obj)
     {
-        if (id == -1) return;
-        Pool[id].Refresh();
-        IDs[++IDs[0]] = id;
+        if (obj.ID == -1)
+        {
+            obj.Release();
+            return;
+        }
+        Pool[obj.ID].Refresh();
+        IDs[++IDs[0]] = obj.ID;
     }
     public void Dispose()
     {
