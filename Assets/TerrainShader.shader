@@ -60,30 +60,29 @@ Shader "Custom/TerrainShader"
 					{1,0,2}
 				};
 				float3 pos = floor(gin[0].vertex/100.0f);
-				float3 edge  = gin[0].vertex - pos * 100.0f;
-				uint pos1;
-				//float3 normal = mul(cross(pos2-pos1,pos3-pos2),(float3x3)unity_WorldToObject);
-				//_Position.w /= 16.0f;
-				g2f o1;
-				pos1 = GetEdge(pos * 2 + Table[(int)edge[0]]);
-				//o1.pos = UnityObjectToClipPos((Edges[pos1] + _Position.xyz - float3(1.0f, 1.0f, 1.0f)) * _Position.w);
-				o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f))/16.0f + _Position.xyz ) * _Position.w);
-				pos1 = pos1 << 2;
-				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				triStream.Append(o1);
-				pos1 = GetEdge(pos * 2 + Table[(int)edge[1]]);
-				//o1.pos = UnityObjectToClipPos((Edges[pos1] + _Position.xyz - float3(1.0f, 1.0f, 1.0f)) * _Position.w);
-				o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f)) / 16.0f + _Position.xyz) * _Position.w);
-				pos1 = pos1 << 2;
-				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				triStream.Append(o1);
-				pos1 = GetEdge(pos * 2 + Table[(int)edge[2]]);
-				//o1.pos = UnityObjectToClipPos((Edges[pos1] + _Position.xyz - float3(1.0f, 1.0f, 1.0f)) * _Position.w);
-				o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f)) / 16.0f + _Position.xyz) * _Position.w);
-				pos1 = pos1 << 2;
-				o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
-				triStream.Append(o1);
-				triStream.RestartStrip();
+				//if((pos.x!=0)&&(pos.x!=17)&&(pos.y!=0)&&(pos.y!=17)&&(pos.z!=0)&&(pos.z!=17))
+				{
+					float3 edge  = gin[0].vertex - pos * 100.0f;
+					uint pos1;
+					g2f o1;
+					pos1 = GetEdge(pos * 2 + Table[(int)edge[0]]);
+					o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f))/16.0f + _Position.xyz ) * _Position.w);
+					pos1 = pos1 << 2;
+					o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
+					triStream.Append(o1);
+					pos1 = GetEdge(pos * 2 + Table[(int)edge[1]]);
+					o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f)) / 16.0f + _Position.xyz) * _Position.w);
+					pos1 = pos1 << 2;
+					o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
+					triStream.Append(o1);
+					pos1 = GetEdge(pos * 2 + Table[(int)edge[2]]);
+					o1.pos = UnityObjectToClipPos(((Edges[pos1] - float3(1.0f, 1.0f, 1.0f)) / 16.0f + _Position.xyz) * _Position.w);
+					pos1 = pos1 << 2;
+					o1.worldNormal = mul((Normals[pos1] + Normals[pos1 + 1] + Normals[pos1 + 2] + Normals[pos1 + 3]) , (float3x3)unity_WorldToObject);
+					triStream.Append(o1);
+					triStream.RestartStrip();
+				}
+				//else{triStream.RestartStrip();}
 			}
 			
 			fixed4 frag(g2f i) : SV_Target 

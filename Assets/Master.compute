@@ -1,4 +1,15 @@
-﻿/******
+﻿#pragma kernel InitKernel0
+RWStructuredBuffer<uint> InitKernel0Voxels;
+
+[numthreads(18,18,1)]
+
+void InitKernel0(uint3 id : SV_DispatchThreadID)
+{
+	InitKernel0Voxels[id.y * 324 + id.x * 18 + id.z] = 0;
+}
+
+
+/******
 * this Kernel is set to generate the densities based on the algorithm 
 * 
 *
@@ -74,7 +85,7 @@ void InitKernel2(uint3 id : SV_DispatchThreadID)
 		{0,0,1}
 	};
 	uint pos = id.y * 324 + id.x * 18 + id.z;
-	InitKernel2Voxels[pos] = 0;
+	//InitKernel2Voxels[pos] = 0;
 	uint3 pos1;
 	uint i;
 	for (i = 0;i < 8;i++)
@@ -82,7 +93,10 @@ void InitKernel2(uint3 id : SV_DispatchThreadID)
 		pos1 = id + Table[i];
 		InitKernel2Voxels[pos] |= ((int)ceil(InitKernel2Densities[pos1.y * 361 + pos1.x * 19 + pos1.z].x) << i);
 	}
-	//InitKernel2Voxels[pos] |= (1 << 8);
+	
+	//if ( (id.z > 2 && id.z < 5) && (id.y > 1 && id.y < 5)) { InitKernel2Voxels[pos] |= (1 << 8); }
+	//else{InitKernel2Voxels[pos] |= (0 << 8);}
+	
 }
 
 #pragma kernel InitKernel3
@@ -162,7 +176,7 @@ float3 SetClearStartPos;
 
 void MaskSetKernel(uint3 id : SV_DispatchThreadID)
 {
-	uint3 pos = (uint3)ClearStartPos + id;
+	uint3 pos = SetClearStartPos + id;
 	MaskSetKernelVoxels[pos.y*324+pos.x*18+pos.z] |= (1<<8);
 }
 
@@ -494,7 +508,7 @@ void DrawKernel(uint3 id : SV_DispatchThreadID)
 	for (i;i <= Table1[code];i++)
 	{
 		InterlockedAdd(DrawKernelCounters[0], 1, t);
-		DrawKernelVertices[t] = id * 100.0f + (float3)Table2[code][i];
+		DrawKernelVertices[t] = id * 100.0f + (float3)Table2[code][i];	
 		code1 = GetEdge(id * 2 + Table3[Table2[code][i].x]);
 		code2 = GetEdge(id * 2 + Table3[Table2[code][i].y]);
 		code3 = GetEdge(id * 2 + Table3[Table2[code][i].z]);

@@ -9,20 +9,20 @@ public class testFPS : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))//forward
         {
-            this.transform.parent.transform.Translate(new Vector3(0.0f, 0.0f, speed * Time.deltaTime));
+            this.transform.Translate(new Vector3(0.0f, 0.0f, speed * Time.deltaTime));
         }
         if(Input.GetKey(KeyCode.S))//back
         {
-            this.transform.parent.Translate(new Vector3(0.0f, 0.0f, -speed * Time.deltaTime));
+            this.transform.Translate(new Vector3(0.0f, 0.0f, -speed * Time.deltaTime));
         }
         if(Input.GetKey(KeyCode.D))
         {
-            this.transform.parent.Translate(new Vector3(speed * Time.deltaTime, 0.0f, 0.0f));
+            this.transform.Translate(new Vector3(speed * Time.deltaTime, 0.0f, 0.0f));
             
         }
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.parent.Translate(new Vector3(-speed * Time.deltaTime, 0.0f, 0.0f));
+            this.transform.Translate(new Vector3(-speed * Time.deltaTime, 0.0f, 0.0f));
         }
 	}
 }
