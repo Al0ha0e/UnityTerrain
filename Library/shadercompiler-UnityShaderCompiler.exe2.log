@@ -1,85 +1,20 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=28801 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28797 outsize=13029 ok=1
+  api=4 insize=28883 outsize=2561 ok=1
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=28783 outsize=3429 ok=1
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(42): incorrect number of arguments to numeric-type constructor
+  api=4 insize=29605 outsize=0 ok=0
 Cmd: compileComputeKernel
-  api=4 insize=28735 outsize=657 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(76): 'GetHeight': function return value differs from prototype
+  api=4 insize=30119 outsize=0 ok=0
 Cmd: compileComputeKernel
-  api=4 insize=28821 outsize=801 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(75): 'GetHeight': function return value differs from prototype
+  api=4 insize=30117 outsize=0 ok=0
 Cmd: compileComputeKernel
-  api=4 insize=28778 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28802 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28777 outsize=3429 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28777 outsize=801 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28781 outsize=657 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28654 outsize=657 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28656 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  api=4 insize=30116 outsize=673 ok=1
 Cmd: initializeCompiler

@@ -1,91 +1,21 @@
 Base path: C:/Program Files/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28801 outsize=56249 ok=1
+  api=4 insize=28883 outsize=949 ok=1
+Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: initializeCompiler
 Cmd: compileComputeKernel
-  api=4 insize=28745 outsize=2613 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(42): incorrect number of arguments to numeric-type constructor
+  api=4 insize=29605 outsize=0 ok=0
 Cmd: compileComputeKernel
-  api=4 insize=28779 outsize=2641 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(76): 'GetHeight': function return value differs from prototype
+  api=4 insize=30119 outsize=0 ok=0
 Cmd: compileComputeKernel
-  api=4 insize=28735 outsize=801 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28817 outsize=2761 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  error: 2 plat 4 at Master.compute(75): 'GetHeight': function return value differs from prototype
+  api=4 insize=30117 outsize=0 ok=0
 Cmd: compileComputeKernel
   error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28745 outsize=56249 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28778 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28805 outsize=801 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28777 outsize=657 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28777 outsize=56249 ok=1
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28781 outsize=949 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  error: 1 plat 4 at (0): Program 'DrawKernel', warning X4714: sum of temp registers and indexable temp registers times 324 threads exceeds the recommended total 16384.  Performance may be reduced
-  api=4 insize=28656 outsize=56249 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: compileComputeKernel
-  api=4 insize=28874 outsize=657 ok=1
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
-Cmd: initializeCompiler
+  api=4 insize=30116 outsize=56249 ok=1
 Cmd: initializeCompiler
